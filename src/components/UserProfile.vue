@@ -69,6 +69,19 @@
                         </div>
                     </div>
                     <!-- Add more posts here in the same format -->
+                    <div class="col-md-6" v-for="post in posts" :key="post.id">
+                        <div class="card mb-3">
+                          <img :src="post.image" class="card-img-top" alt="Post Image">
+                          <div class="card-body">
+                            <h5 class="card-title">{{ post.title }}</h5>
+                            <div class="d-flex justify-content-between">
+                              <small class="text-muted">Likes: </small>
+                              <small class="text-muted">Comments: </small>
+                            </div>
+                            <p class="card-text mt-2">Author: {{ post.author_name}}</p>
+                          </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -78,22 +91,43 @@
 </template>
 
 <script>
+import axios from "axios"
 import HeaderBar from "./Header.vue"
 import FooterBar from "./Footer.vue"
 export default {
     name: "UserProfile",
     data(){
         return{
+            posts: []
         }
     },
     components:{
       HeaderBar,
       FooterBar
   },
+
+  mounted(){
+
+    this.fetchPost()
+  },
+
+  methods:{
+    async fetchPost(){
+        try {
+        const response = await axios.get("http://localhost:8000/post/"); 
+        
+        this.posts = response.data;
+
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  }
   
   
 }
 </script>
+
 
 <style>
  @import "../assets/style.css"
