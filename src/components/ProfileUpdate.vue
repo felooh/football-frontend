@@ -4,9 +4,11 @@
         <div class="row">
             <div class="col-md-3 border-right">
                 <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-                    <img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
-                    <span class="font-weight-bold">Edogaru</span><span class="text-black-50">edogaru@mail.com.my</span>
+                    <img class="rounded-circle mt-5"  src="../assets/images/profile_user.jpg" alt="" style="width: 300px;">
+                    <br>
+                    <span class="font-weight-bold">{{ user.name }}</span><span class="text-black-50">{{ user.email }}</span>
                     <span> </span>
+                   
                 </div>
             </div>
             <div class="col-md-9 border-right">
@@ -14,54 +16,58 @@
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h4 class="text-right">Profile Settings</h4>
                     </div>
-                    <div class="row mt-2">
-                        <div class="col-md-6"><label class="labels">First Name</label>
-                            <input v-model="first_name" type="text" class="form-control" placeholder="first name" >
+                    <form >
+                        <div class="row mt-2">
+                            <div class="col-md-6"><label class="labels">First Name</label>
+                                <input v-model="user.first_name" type="text" class="form-control" placeholder="first name" >
+                            </div>
+                            <div class="col-md-6"><label class="labels">Last Name</label>
+                                <input v-model="user.last_name" type="text" class="form-control" placeholder="surname">
+                            </div>
                         </div>
-                        <div class="col-md-6"><label class="labels">Last Name</label>
-                            <input v-model="last_name" type="text" class="form-control" placeholder="surname">
+                        <div class="row mt-3">
+                            <!-- <div class="col-md-12"><label class="labels">Username</label>
+                                <input v-model="name" type="text" class="form-control" placeholder="" >
+                            </div> -->
+    
+                            <div class="col-md-12"><label class="labels">Mobile Number</label>
+                                <input v-model="user.mobile" type="text" class="form-control" placeholder="enter phone number" >
+                            </div>
+                            <div class="col-md-12">
+                                <label class="labels">Gender</label>
+                                <select v-model="user.gender" class="form-control">
+                                    <option value="" selected disabled>Please select</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Prefer not to say">Prefer not to say</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <label class="labels">Location</label>
+                                <input v-model="user.location" type="text" class="form-control" placeholder="enter address line 2" >
+                            </div>
+                            <!-- <div class="col-md-12">
+                                <label class="labels">Email</label>
+                                <input v-model="email" type="text" class="form-control" placeholder="enter email id" >
+                            </div> -->
+                            <div class="col-md-12">
+                                <label class="labels">Occupation</label>
+                                <input v-model="user.occupation" type="text" class="form-control" placeholder="Ocuupation" >
+                            </div>
                         </div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class="col-md-12"><label class="labels">Username</label>
-                            <input v-model="name" type="text" class="form-control" placeholder="" >
-                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-6">
+                                <label class="labels">Country</label>
 
-                        <div class="col-md-12"><label class="labels">Mobile Number</label>
-                            <input v-model="mobile" type="text" class="form-control" placeholder="enter phone number" >
+                                <country-select contentType="text" v-model="user.country" class="form-control"  :country="country" topCountry="US" />
+    
+                            </div>
                         </div>
-                        <div class="col-md-12">
-                            <label class="labels">Gender</label>
-                            <select v-model="gender" class="form-control">
-                                <option value="" selected disabled>Please select</option>
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
-                                <option value="Prefer not to say">Prefer not to say</option>
-                            </select>
+                        <div class="mt-5 text-center">
+                            <button  @click.prevent="updateUser" class="btn btn-primary profile-button" type="submit">Save Profile</button>
                         </div>
-                        <div class="col-md-12">
-                            <label class="labels">Location</label>
-                            <input v-model="location" type="text" class="form-control" placeholder="enter address line 2" >
-                        </div>
-                        <div class="col-md-12">
-                            <label class="labels">Email</label>
-                            <input v-model="email" type="text" class="form-control" placeholder="enter email id" >
-                        </div>
-                        <div class="col-md-12">
-                            <label class="labels">Occupation</label>
-                            <input v-model="occupation" type="text" class="form-control" placeholder="Ocuupation" >
-                        </div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class="col-md-6">
-                            <label class="labels">Country</label>
-                            <country-select v-model="country" class="form-control"  :country="country" topCountry="US" />
-
-                        </div>
-                    </div>
-                    <div class="mt-5 text-center">
-                        <button class="btn btn-primary profile-button" type="button">Save Profile</button>
-                    </div>
+                    </form>
+                  
                 </div>
             </div>
           
@@ -86,16 +92,9 @@ export default {
   },
   data() {
     return{
-       first_name:"",
-       last_name:"",
-       name:"",
-       mobile:"",
-       gender:"",
-       location:"",
-       email:"",
-       occupation:"",
-       country:""
-
+     
+       user: {}
+    
     }
   },
   mounted(){
@@ -113,33 +112,35 @@ export default {
     async  fetchUser() {
         const authenticationToken = localStorage.getItem('access');
 
-        const response = await axios.get("http://localhost:8000/api/user/", {
+        const response = await axios.get("http://localhost:8000/api/get-user/", {
             headers: {
                 "Authorization": `Bearer ${authenticationToken}`
             }
         });
         console.log(response.data)
 
-        const userData = response.data;
+        this.user = response.data;
 
-        this.first_name = userData.first_name;
-        this.last_name = userData.last_name;
-        this.name = userData.name;
-        this.mobile = userData.mobile;
-        this.gender = userData.gender;
-        this.location = userData.location;
-        this.email = userData.email;
-        this.occupation = userData.occupation;
-        this.country = userData.country;
+      },
 
-        console.log(userData);
-      }
+    async updateUser(){
 
-   
+        const authenticationToken = localStorage.getItem('access');
 
-   
+        const response = await axios.patch(`http://localhost:8000/api/update-user/`, this.user, {
+            headers: {
+                "Authorization": `Bearer ${authenticationToken}`
+            }
+        })
+
+        if(response.status===200){
+            alert("VERY Successful")
+            this.$router.push({name:"UserProfile"})
+        }
+     }  
+
    }
- }
+}
 
   
 </script>

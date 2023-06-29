@@ -6,9 +6,9 @@
             <div class="col-md-4">
                 <h1>Blogger Details</h1>
                 <div class="text-center">
-                    <img src="../assets/images/players/player-1.png" alt="User Photo" class="img-fluid rounded-circle" style="width: 200px;">
+                    <img src="../assets/images/profile_user.jpg" alt="User Photo" class="img-fluid rounded-circle" style="width: 200px;">
                 </div>
-                <h3 class="text-center mt-3"></h3>
+                <h3 class="text-center mt-3">{{ user.first_name }}</h3>
                 <p class="text-center">Number of Posts: 10</p>
             </div>
 
@@ -98,7 +98,8 @@ export default {
     name: "UserProfile",
     data(){
         return{
-            posts: []
+            posts: [],
+            user:{}
         }
     },
     components:{
@@ -109,6 +110,7 @@ export default {
   mounted(){
 
     this.fetchPost()
+    this.fetchUser()
   },
 
   methods:{
@@ -121,7 +123,21 @@ export default {
       } catch (error) {
         console.error(error);
       }
-    }
+    },
+    async  fetchUser() {
+        const authenticationToken = localStorage.getItem('access');
+
+        const response = await axios.get("http://localhost:8000/api/get-user/", {
+            headers: {
+                "Authorization": `Bearer ${authenticationToken}`
+            }
+        });
+        console.log(response.data)
+
+        this.user = response.data;
+
+
+      },
   }
   
   

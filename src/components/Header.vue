@@ -45,7 +45,7 @@
                 </li>
             </ul>
               <div v-show="login">
-                <h5>Welcome</h5>
+                <h5>Welcome {{ user.first_name }}!</h5>
               </div>
             <form class="form-inline my-2 my-lg-0" >
                 <div class="searchBar">
@@ -60,13 +60,15 @@
 
 
 <script>
+import axios from "axios";
 
    export default{
     name:"HeaderBar",
     data(){
         return {
             logged: true,
-            login: false
+            login: false,
+            user: {}
         }
     },
     mounted() {
@@ -78,7 +80,26 @@
             this.logged = false;
             this.login = true
         }
+
+        this.fetchUser()
      },
+
+     methods:{
+        async  fetchUser() {
+        const authenticationToken = localStorage.getItem('access');
+
+        const response = await axios.get("http://localhost:8000/api/get-user/", {
+            headers: {
+                "Authorization": `Bearer ${authenticationToken}`
+            }
+        });
+        console.log(response.data)
+
+        this.user = response.data;
+
+      },
+     }
+
     
      
 }
