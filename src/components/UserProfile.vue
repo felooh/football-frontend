@@ -71,7 +71,7 @@
                     <!-- Add more posts here in the same format -->
                     <div class="col-md-6" v-for="post in posts" :key="post.id">
                         <div class="card mb-3">
-                          <img :src="post.image" class="card-img-top" alt="Post Image">
+                          <img :src="post.image" class="card-img-top" alt="Post Image" style="height: 350px;">
                           <div class="card-body">
                             <h5 class="card-title">{{ post.title }}</h5>
                             <div class="d-flex justify-content-between">

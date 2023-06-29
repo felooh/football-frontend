@@ -71,7 +71,7 @@
 </template>
 
 <script>
-// import axios from "axios"
+import axios from "axios"
 import HeaderBar from "./Header.vue";
 import FooterBar from "./Footer.vue";
 
@@ -106,52 +106,40 @@ export default {
     this.$router.push({name:"LogIn"})
     }
     
-    this.fetchUserData();
+    this.fetchUser();
   },
   methods:{
 
-    async fetchUserData(){
-
+    async  fetchUser() {
         const authenticationToken = localStorage.getItem('access');
-        console.log(authenticationToken)
 
-      
-        // Add more properties as needed based on the token structure
+        const response = await axios.get("http://localhost:8000/api/user/", {
+            headers: {
+                "Authorization": `Bearer ${authenticationToken}`
+            }
+        });
+        console.log(response.data)
+
+        const userData = response.data;
+
+        this.first_name = userData.first_name;
+        this.last_name = userData.last_name;
+        this.name = userData.name;
+        this.mobile = userData.mobile;
+        this.gender = userData.gender;
+        this.location = userData.location;
+        this.email = userData.email;
+        this.occupation = userData.occupation;
+        this.country = userData.country;
+
+        console.log(userData);
       }
 
    
 
-    // try {
-    //   const response = await axios.get('http://localhost:8000/user/user-detail/', {
-    //     headers: {
-    //       Authorization: `Bearer ${authenticationToken}`,
-    //     },
-    //   })
-
-     
-    //   const userData = response.data;
-
-        // Assign fetched data to corresponding data properties
-        // this.first_name = userData.first_name;
-        // this.last_name = userData.last_name;
-        // this.name = userData.name;
-        // this.mobile = userData.mobile;
-        // this.gender = userData.gender;
-        // this.location = userData.location;
-        // this.email = userData.email;
-        // this.occupation = userData.occupation;
-        // this.country = userData.country;
-
-        // console.log(userData);
-
-    } 
-
-//     catch (error) {
-//       console.error('Error fetching user data:', error);
-//     }
-//   }
-//     }
-  }
+   
+   }
+ }
 
   
 </script>
