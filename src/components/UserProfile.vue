@@ -99,7 +99,8 @@ export default {
     data(){
         return{
             posts: [],
-            user:{}
+            user:{},
+            token: localStorage.getItem('access'),
         }
     },
     components:{
@@ -114,9 +115,13 @@ export default {
   },
 
   methods:{
-    async fetchPost(){
+    async fetchPost(id){
         try {
-        const response = await axios.get("http://localhost:8000/post/"); 
+        const response = await axios.get("http://localhost:8000/api/v1/posts/", {
+            headers: {
+                "Authorization": `Bearer ${this.token}`
+            }
+        }); 
         
         this.posts = response.data;
 

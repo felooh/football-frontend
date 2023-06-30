@@ -52,7 +52,7 @@
                         <br>
                         <div class="form-group">
                           <label for="authorName">Author Name</label>
-                          <input v-model="post.author_name" type="text" class="form-control" id="authorName" placeholder="Enter author name">
+                          <input  v-model= "post.author_name" type="text" class="form-control" id="authorName" placeholder="Enter author name">
                         </div>
                         <br>
                         <button  type="submit" class="btn btn-primary">Submit</button>
@@ -89,11 +89,20 @@ data(){
       content:"",
       file: null,
       author_name:""
-    }
+    },
+    user: {}
     
   }
+ 
 },
+mounted(){
+    
+    this.fetchUser();
+    // this.fullname();
+  },
 methods:{
+
+
      async addPost() {
         let formData = new FormData();
 
@@ -124,6 +133,22 @@ methods:{
      handleFileChange(event) {
       this.post.file = event.target.files[0];
     },
+
+
+    async  fetchUser() {
+        const authenticationToken = localStorage.getItem('access');
+
+        const response = await axios.get("http://localhost:8000/api/get-user/", {
+            headers: {
+                "Authorization": `Bearer ${authenticationToken}`
+            }
+        });
+        console.log(response.data)
+
+        this.user = response.data;
+
+
+      },
         
     }
 }   
