@@ -6,7 +6,7 @@ import UpdatePost from "./components/UpdatePost.vue";
 import LogOut from "./components/LogOut.vue";
 import UserProfile from "./components/UserProfile.vue";
 import ViewPost from "./components/ViewPost.vue";
-import ProfileUpdate from "./components/ProfileUpdate.vue"
+import ProfileUpdate from "./components/ProfileUpdate.vue";
 
 
 
@@ -51,7 +51,7 @@ const routes = [
     {
         name: "ViewPost",
         component: ViewPost,
-        path:"/view_post"
+        path:"/view_post/:id"
     },
     {
         name: "ProfileUpdate",

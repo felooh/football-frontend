@@ -88,9 +88,12 @@ data(){
       title:"",
       content:"",
       file: null,
-      author_name:""
+      author_name:"",
+      author:"",
     },
-    user: {}
+    user: {},
+
+    token: localStorage.getItem('access')
     
   }
  
@@ -111,11 +114,13 @@ methods:{
         formData.append("content", this.post.content);
         formData.append("image", this.post.file);
         formData.append("author_name", this.post.author_name);
-
+        formData.append("author", this.user.id);
+       
         try {
-          let response = await axios.post("http://localhost:8000/post/", formData, {
+          let response = await axios.post("http://localhost:8000/api/v1/posts/", formData, {
             headers: {
-              "Content-Type": "multipart/form-data"
+              "Content-Type": "multipart/form-data",
+              
             }
           });
 
@@ -136,17 +141,23 @@ methods:{
 
 
     async  fetchUser() {
-        const authenticationToken = localStorage.getItem('access');
 
         const response = await axios.get("http://localhost:8000/api/get-user/", {
             headers: {
-                "Authorization": `Bearer ${authenticationToken}`
+                "Authorization": `Bearer ${this.token}`
             }
         });
         console.log(response.data)
+  
 
         this.user = response.data;
 
+
+        if(response.code==="token_not_valid"){
+            
+            this.$router.push({name:"LogIn"})
+        }
+       
 
       },
         

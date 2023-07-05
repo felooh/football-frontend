@@ -97,6 +97,11 @@ import axios from "axios";
 
         this.user = response.data;
 
+        if(response.status===401){
+            
+            this.$router.push({name:"LogIn"})
+        }
+       
       },
      }
 
