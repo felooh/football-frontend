@@ -26,7 +26,7 @@
                         <div class="form-group">
                           <label for="content">Content</label>
                           <div style="height: 400px;">
-                            <QuillEditor v-model:content="post.content" contentType="text" theme="snow" toolbar="full"/>
+                            <QuillEditor v-model:content="post.content" contentType="html" theme="snow" toolbar="full"/>
                           </div>
                         </div>
                         <br><br><br><br>

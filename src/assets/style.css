@@ -869,4 +869,7 @@ label {
     cursor: pointer
 }
 
-
+.no-posts-message {
+    background-color: lightcoral;
+    padding: 20px;
+  }

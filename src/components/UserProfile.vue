@@ -15,9 +15,16 @@
                 <div class="col-md-8">
                     <h1>Recent Posts</h1>
                     <div class="row">
-                        <div class="col-md-6" v-for="post in posts" :key="post.id">
+                        <div v-if="posts.length === 0" class="col-md-12">
+                            <div class="card bg-light-red">
+                                <div class="no-posts-message">
+                                    <h5 class="no-posts-message">No posts yet</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div v-else class="col-md-6" v-for="post in posts" :key="post.id">
                             <div class="card mb-3">
-                                <img :src="post.image" class="card-img-top" alt="Post Image" style="height: 350px; ">
+                                <img :src="'http://127.0.0.1:8000'+post.image" class="card-img-top" alt="Post Image" style="height: 350px;">
                                 <div class="card-body">
                                     <h5 class="card-title">{{ post.title }}</h5>
                                     <div class="d-flex justify-content-between">
@@ -25,17 +32,15 @@
                                         <small class="text-muted">Comments: </small> 
                                     </div>
                                     <p class="card-text mt-2">Author: {{ user.first_name}}</p>
-                                    <router-link :to="'/view_post/' + post.id">Read More</router-link><br>
+                                    <router-link :to="'/view_post/' + post.id" class="btn btn-primary" >Read More</router-link><br>
                                 </div>
-
                             </div>
-
                         </div>
                     </div>
                 </div>
+                </div>
             </div>
-        </div>
-
+                
         <FooterBar/>
 </template>
 
@@ -68,7 +73,7 @@ export default {
 
     async fetchPost(){
         try {
-        const response = await axios.get("http://localhost:8000/api/v1/posts/author", {
+        const response = await axios.get("http://localhost:8000/api/v1/posts/author/", {
             headers: {
                 "Authorization": `Bearer ${this.token}`
             }
@@ -98,7 +103,8 @@ export default {
         }
 
 
-      }
+      },
+      
       
   }
   
