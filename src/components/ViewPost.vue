@@ -12,7 +12,7 @@
           <p class="blooger-name"><i class="far fa-comments"></i>no comments</p>
           <p class="blogger-name"><i class="fas fa-tag"></i>No tags</p>
           <img :src="post.image" alt="Post Image" width="400">
-          <p class="post-content" ContentType="html">{{ post.content }}</p>
+          <p class="post-content" http-equiv="content-type" content="text/html; charset=UTF-8">{{ post.content }}</p>
         </div>
         <div class="likes-comments">
           <p>Likes: <span class="likes-count">100</span></p>

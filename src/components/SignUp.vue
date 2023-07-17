@@ -63,21 +63,30 @@
        }
     },
     methods:{
-        
+      
         async SignUp(){
-          var response = await fetch('http://localhost:8000/api/user/' ,{
-            method:"post",
-            headers:{
-              'Content-Type':'application/json'
-            },
-            body: JSON.stringify(this.blogger)
-          })
-          if(response.status==201) {
-                alert("Sign Up Successful")
-                                
-                this.$router.push({name:"LogIn"})
+          try {
+              var response = await fetch('http://localhost:8000/user/' ,{
+              method:"post",
+              headers:{
+                'Content-Type':'application/json'
+              },
+              body: JSON.stringify(this.blogger)
+                 })
+              if(response.status==201) {
+                  this.$router.push({name:"LogIn"})
 
-            }
+                  alert("Sign Up Successful")
+                                  
+                
+
+              }
+            
+          } catch (error) {
+            console.warn(error)
+            
+          }
+          
         },
         
     },

@@ -1,11 +1,12 @@
 <template>
     <HeaderBar />
-    <h2>Football Blog Input Form</h2>
+    <br><br><br>
     <body> 
         <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-8">
                 <div class="add_post_container" style="align-items:center;">
+                    <h2 style="font-weight: bold;">Add Post Form</h2>
                     <form  enctype="multipart/form-data" @submit.prevent="addPost" >
                         <div class="mb-3" style="z-index:1;">
                           <label class="label" for="category">Category</label>
@@ -33,7 +34,6 @@
                         <div class="form-group">
                           <label for="image">Image:</label>
                           <input type="file" id="image" @change.prevent="handleFileChange" />
-                          
                         </div>
                         <br>
                         <!-- <div class="form-group">
@@ -101,7 +101,8 @@ data(){
 mounted(){
     
     this.fetchUser();
-    // this.fullname();
+
+
   },
 methods:{
 
@@ -153,14 +154,14 @@ methods:{
         this.user = response.data;
 
 
-        if(response.code==="token_not_valid"){
+        if(response.status===401){
             
             this.$router.push({name:"LogIn"})
         }
        
 
       },
-        
+
     }
 }   
 

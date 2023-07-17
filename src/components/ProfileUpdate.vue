@@ -4,19 +4,21 @@
         <div class="row">
             <div class="col-md-3 border-right">
                 <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-                    <img class="rounded-circle mt-5"  src="../assets/images/profile_user.jpg" alt="" style="width: 300px;">
+                    <div class="profile-picture-container">
+                        <img class="rounded-circle mt-5" :src="user.profile_pic" alt="../assets/logo.png" >
+                    </div>
                     <br>
                     <span class="font-weight-bold">{{ user.name }}</span><span class="text-black-50">{{ user.email }}</span>
                     <span> </span>
-                   
                 </div>
             </div>
             <div class="col-md-9 border-right">
                 <div class="p-3 py-5">
                     <div class="d-flex justify-content-between align-items-center mb-3">
-                        <h4 class="text-right">Profile Settings</h4>
+                        <h4 style="font-weight: bolder;" class="text-right">Profile Settings</h4>
                     </div>
-                    <form >
+
+                    <form  enctype="multipart/form-data" >
                         <div class="row mt-2">
                             <div class="col-md-6"><label class="labels">First Name</label>
                                 <input v-model="user.first_name" type="text" class="form-control" placeholder="first name" >
@@ -62,9 +64,17 @@
                                 <country-select contentType="text" v-model="user.country" class="form-control"  :country="country" topCountry="US" />
     
                             </div>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <div class="col-md-6">
+                                <label for="user.profile_pic">Profile Picture</label><br>
+                                <input type="file" :id="user.profile_pic"  @change.prevent="handleFileChange" />
+                            </div>
                         </div>
                         <div class="mt-5 text-center">
-                            <button  @click.prevent="updateUser" class="btn btn-primary profile-button" type="submit">Save Profile</button>
+                            <button @click.prevent="updateUser" class="btn btn-primary profile-button" type="submit">Save Profile</button>
                         </div>
                     </form>
                   
@@ -127,17 +137,39 @@ export default {
 
         const authenticationToken = localStorage.getItem('access');
 
-        const response = await axios.patch(`http://localhost:8000/api/update-user/`, this.user, {
+        let formData = new FormData();
+
+        if (this.user.profile_pic instanceof File) {
+            formData.append("profile_pic", this.user.profile_pic);
+        }
+
+        formData.append("first_name", this.user.first_name)
+        formData.append("last_name", this.user.last_name)
+        formData.append("location", this.user.location)
+        formData.append("gender", this.user.gender)
+        formData.append("location", this.user.location)
+        formData.append("country", this.user.country)
+        formData.append("occupation", this.user.occupation)
+        formData.append("mobile", this.user.mobile)
+
+
+        
+        const response = await axios.patch(`http://localhost:8000/api/update-user/`, formData, {
             headers: {
                 "Authorization": `Bearer ${authenticationToken}`
             }
         })
 
         if(response.status===200){
-            alert("VERY Successful")
+            alert("Update Successful")
             this.$router.push({name:"UserProfile"})
         }
-     }  
+     },
+         
+     handleFileChange(event) {
+      this.user.profile_pic = event.target.files[0];
+      
+    },
 
    }
 }

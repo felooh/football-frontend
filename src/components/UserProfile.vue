@@ -5,7 +5,7 @@
                 <div class="col-md-4">
                     <h1 style="font-weight: bolder;">Blogger Details</h1>
                     <div class="image">
-                        <img src="../assets/images/profile_user.jpg" alt="User Photo" class="img-fluid rounded-circle" style="width: 200px;  margin-left: 55px;">
+                        <img :src="user.profile_pic" alt="User Photo" class="img-fluid rounded-circle" style="width: 300px; height: 280px;  margin-left: -0px;">
                         <h3 class="text-center mt-3">{{ user.first_name }}</h3>
                         <p class="text-center">Number of Posts: 10</p>
                         <i class="bi bi-trash"></i>
@@ -26,7 +26,7 @@
                             <div class="card mb-3">
                                 <img :src="'http://127.0.0.1:8000'+post.image" class="card-img-top" alt="Post Image" style="height: 350px;">
                                 <div class="card-body">
-                                    <h5 style="font-weight: bold;" class="card-title">{{ post.title }}</h5>
+                                    <h5 style="font-weight: bold;" class="card-title">{{ truncateTitle(post.title, 60) }}</h5>
                                     <div class="d-flex justify-content-between">
                                         <small class="text-muted">Likes: </small>
                                         <small class="text-muted">Comments: </small> 
@@ -96,14 +96,25 @@ export default {
             });
 
             this.user = response.data;
+
+
+            if(response.status===401){
+                
+                this.$router.push({name:"LogIn"})
+            }
+       
             
         } catch (error) {
             console.error(error)
             
         }
-
-
       },
+    truncateTitle(title, limit) {
+        if (title.length > limit) {
+        return title.substring(0, limit) + "...";
+        }
+        return title;
+      }
       
       
   }

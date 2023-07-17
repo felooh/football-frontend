@@ -8,7 +8,7 @@
           <div class="header-text">
               <h1>Football Blog<br></h1>
               <div class="header-button">
-                  <a class="btn btn-primary" href="#">Register to post!</a>
+                  <a class="btn btn-primary" href="#">Update your Profile to post!</a>
                   <span><i class="fas fa-arrow-right"></i></span>
                   
               </div>

@@ -21,7 +21,7 @@ head, body{
 header part css
 -------------------- */
 .wrapper{
-    display: flex;
+    display: block;
     background-image: linear-gradient(to right,#3795BD, #3A1078);
     background-color: #2D25A0;
     margin: 0 auto;
@@ -608,27 +608,27 @@ media query part for mobile devices
       top: 0;
       left: 0;
       width: 100%;
-      padding: 10px;
+      padding: 20px;
       box-sizing: border-box;
       z-index: 5;
       display: flex;
 
 }
 
-.nav-item {
+.nav-item  {
       display: inline-block;
-      margin-left: 0px;
-      padding: 20px;
+      margin-left: 30px;
+      /* padding: 10px; */
       color: #333;
       text-decoration: none;
       transition: color 0.3s;
-      font-size: larger;
-
+      font-weight: bold;
+      font-size: 20px;
 
 }
 
-.nav-link:hover {
-  color: #f00;
+.nav-item:hover {
+  color: #ffffff;
 }
 
 
@@ -836,7 +836,6 @@ i {
 }
 label {
     font-weight: bold;
-    font-size: 20px;
 }
 /* chini */
 .form-control:focus {
@@ -873,3 +872,38 @@ label {
     background-color: lightcoral;
     padding: 20px;
   }
+  .profile-picture-container {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+.profile-picture-container img {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+}
+.upload-option {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 10px;
+}
+.profile-picture-container:hover .upload-option {
+    display: block;
+}
+#img-nav-bar{
+    width: 40px;
+    height: 40px;
+    border-radius: 30px;
+
+}
+
+#profile{
+
+    margin-bottom: 10px;
+
+}

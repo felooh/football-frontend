@@ -1,4 +1,5 @@
 <template>
+    
     <nav id="my_nav_bar" class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#"><img src="../assets/images/pngwing.com.png" width="120" height="100" alt=""></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -12,11 +13,11 @@
                     <router-link to="/" class="nav-link"><i class="fa fa-home" aria-hidden="true"></i>Home<span
                         class="sr-only">(current)</span></router-link>
                 </li>
-                <li class="nav-item">
-                    <router-link to="/user_profile" class="nav-link"><i class="fas fa-user"></i>Profile</router-link>
+                <li class="nav-item" v-show="login">
+                    <router-link to="/user_profile" class="nav-link"><i class="fas fa-user"></i>My Posts</router-link>
 
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" v-show="login">
                     <router-link to="/add_post" class="nav-link"><i class="fa fa-plus-circle"></i>Create Post</router-link>
                 </li>
                 <li class="nav-item" v-show="logged">
@@ -25,33 +26,38 @@
                 <li class="nav-item" v-show="logged">
                     <router-link to="/sign_up" class="nav-link"><i class="fa fa-plus-circle"></i>Sign Up</router-link>
                 </li>
-                <li class="nav-item">
-                    <router-link to="/profile_update" class="nav-link"><i class="fa fa-plus-circle"></i>Profile Update</router-link>
-                </li>
-                <li class="nav-item">
+                <li class="nav-item" v-show="login">
                     <router-link to="/logout" class="nav-link"><i class="fa fa-power-off" aria-hidden="true"></i>Logout</router-link>
                 </li>
-                <li class="nav-item">
-                    <div class="nav_dropdown">
-                        <button class="btn btn-primary dropdown-toggle">Categories</button>
-                        <div class="dropdown-content">
-                          <a href="#leagues">Leagues</a>
-                          <a href="#players">Players</a>
-                          <a href="#highlights">Highlights</a>
-                          <a href="#news">Latest News</a>
-                          <a href="#videos">Videos</a>
-                        </div>
-                      </div>
+                <li class="nav-item" >
+                    <router-link to="/profile_update" class="nav-link">
+                        <img :src="user.profile_pic" alt="" id="img-nav-bar">
+                         Profile
+                    </router-link>
                 </li>
+
+                <li class="nav-item">
+                    <div class="nav_dropdown" >
+                        <button class="btn btn-primary dropdown-toggle" style="margin-left: 60px;">Categories</button>
+                        <div class="dropdown-content">
+                        <a href="#leagues">Leagues</a>
+                        <a href="#players">Players</a>
+                        <a href="#highlights">Highlights</a>
+                        <a href="#news">Latest News</a>
+                        <a href="#videos">Videos</a>
+                        </div>
+                    </div>
+        
+                </li>
+
+                <li class="nav-item">
+                    <form class="form-inline my-2 my-lg-0" >
+                        <div class="searchBar">
+                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"> 
+                        </div>
+                    </form>
+                </li>   
             </ul>
-              <div v-show="login">
-                <h5>Welcome {{ user.first_name }}!</h5>
-              </div>
-            <form class="form-inline my-2 my-lg-0" >
-                <div class="searchBar">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"> 
-                </div>
-            </form>
         </div>
     </nav>
 
@@ -73,6 +79,7 @@ import axios from "axios";
     },
     mounted() {
 
+        this.fetchUser()
 
         let user = localStorage.getItem("access");
 
@@ -81,7 +88,9 @@ import axios from "axios";
             this.login = true
         }
 
-        this.fetchUser()
+        if(this.user.profile_pic){
+            this.login = true
+        }
      },
 
      methods:{
