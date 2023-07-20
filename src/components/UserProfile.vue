@@ -4,10 +4,10 @@
             <div class="row">
                 <div class="col-md-4">
                     <h1 style="font-weight: bolder;">Blogger Details</h1>
-                    <div class="image">
-                        <img :src="user.profile_pic" alt="User Photo" class="img-fluid rounded-circle" style="width: 300px; height: 280px;  margin-left: -0px;">
-                        <h3 class="text-center mt-3">{{ user.first_name }}</h3>
-                        <p class="text-center">Number of Posts: 10</p>
+                    <div class="text-center">
+                        <img :src="user.profile_pic" alt="User Photo" class="img-fluid rounded-circle">
+                        <h3>{{ user.first_name }}</h3>
+                        <p>Number of Posts: 10</p>
                         <i class="bi bi-trash"></i>
                     </div>
                 </div>

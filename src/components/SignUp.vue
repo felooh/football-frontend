@@ -17,7 +17,7 @@
                     </div>
 
                     <div class="form-floating mb-3">
-                      <input v-model="blogger.email" type="email" class="form-control" placeholder="myemail" required autofocus>
+                      <input v-model="blogger.username" type="email" class="form-control" placeholder="myemail" required autofocus>
                       <label for="floatingInputUsername">Email</label>
                     </div>
       
@@ -56,7 +56,7 @@
        return {
         blogger:{
           name: "",
-          email:"",
+          username:"",
           password:""
         }
       

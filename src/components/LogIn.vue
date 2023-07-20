@@ -12,7 +12,7 @@
                   <form>
                     <br><br><br>
                     <div class="form-floating mb-3">
-                      <input v-model="email" type="email" class="form-control"  placeholder="myEmail" required autofocus>
+                      <input v-model="username" type="email" class="form-control"  placeholder="myEmail" required autofocus>
                       <label for="floatingInputEmail">Email</label>
                     </div>
                     <hr>
@@ -46,7 +46,7 @@ export default {
     name:"LogIn",
     data(){
         return {
-            email:"",
+            username:"",
             password:"",
             
         }
@@ -56,7 +56,7 @@ export default {
 
           const user = {
 
-          email: this.email,
+          username: this.username,
           password: this.password
           };
 

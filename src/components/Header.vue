@@ -29,6 +29,9 @@
                 <li class="nav-item" v-show="login">
                     <router-link to="/logout" class="nav-link"><i class="fa fa-power-off" aria-hidden="true"></i>Logout</router-link>
                 </li>
+                <li class="nav-item" v-show="login">
+                    <router-link to="/shop" class="nav-link"><i class="fa fa-power-off" aria-hidden="true"></i>Shop</router-link>
+                </li>
                 <li class="nav-item" >
                     <router-link to="/profile_update" class="nav-link">
                         <img :src="user.profile_pic" alt="" id="img-nav-bar">
