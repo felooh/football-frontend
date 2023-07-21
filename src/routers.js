@@ -1,4 +1,4 @@
-import HomePage from "./components/HomePage.vue";
+import HomePage from "./views/HomePage.vue";
 import SignUp from "./components/SignUp.vue";
 import LogIn from "./components/LogIn.vue";
 import AddPost from "./components/AddPost.vue";

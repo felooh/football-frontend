@@ -452,8 +452,9 @@
 </template>
 
 <script>
-import HeaderBar from "./Header.vue"
-import FooterBar from "./Footer.vue"
+import axios from "axios"
+import HeaderBar from "@/components/Header.vue"
+import FooterBar from "@/components/Footer.vue"
 export default {
   name: 'HomePage',
   data(){
@@ -465,10 +466,35 @@ export default {
       HeaderBar,
       FooterBar
   },
+  computed(){
+
+    this.fetchUser()
+
+  },
+
+  methods:{
+        async  fetchUser() {
+        try {
+            const authenticationToken = localStorage.getItem('access');
+
+            const response = await axios.get("http://localhost:8000/api/get-user/", {
+                headers: {"Authorization": `Bearer ${authenticationToken}`}
+            });
+            console.log(response)
+        } catch (error) {
+            if(error.data.response.status === 401){
+                this.$router.push({name:"LogIn"})
+            }
+            // console.log(error.response.data)
+        }
+       
+      },
  
-  }
+
+    }
+}
 </script>
 
 <style>
-  @import "../assets/style.css";
+ @import "../assets/style.css";
 </style>

@@ -1,10 +1,11 @@
-import { createApp } from 'vue';
-import App from './App.vue';
-import router from "./routers";
+import { createApp } from 'vue'
+import App from './App.vue'
+import router from "./routers"
 import vueCountryRegionSelect from 'vue3-country-region-select'
 import store from './store'
 import axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.css'
+
 
 
 

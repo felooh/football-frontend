@@ -36,20 +36,6 @@
                           <input type="file" id="image" @change.prevent="handleFileChange" />
                         </div>
                         <br>
-                        <!-- <div class="form-group">
-                          <label for="basic-url" class="form-label">Video</label>
-                          <div class="input-group mb-3">
-                            <span class="input-group-text" id="basic-addon3">https://example.com/users/</span>
-                            <input
-                              v-model="post.video"
-                              type="text"
-                              class="form-control"
-                              id="basic-url1"
-                              aria-describedby="basic-addon3"
-                            />
-                          </div>
-                        </div> -->
-                        <br>
                         <div class="form-group">
                           <label for="authorName">Author Name</label>
                           <input  v-model= "post.author_name" type="text" class="form-control" id="authorName" placeholder="Enter author name">
@@ -169,6 +155,3 @@ methods:{
 // use formdata 
 </script>
 
-<style>
-  @import "../assets/style.css"
-</style>
