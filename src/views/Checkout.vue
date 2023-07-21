@@ -1,4 +1,5 @@
 <template>
+    <EcHeader />
     <div class="page-checkout">
         <div class="columns is-multiline">
             <div class="column is-12">
@@ -118,7 +119,7 @@
 
 <script>
 import axios from 'axios'
-
+import EcHeader from '@/components/EcHeader.vue'
 export default {
     name: 'EcCheckout',
     data() {
@@ -137,6 +138,9 @@ export default {
             place: '',
             errors: []
         }
+    },
+    components:{
+        EcHeader
     },
     mounted() {
         document.title = 'Checkout | Djackets'

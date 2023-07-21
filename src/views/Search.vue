@@ -1,4 +1,6 @@
 <template>
+    <EcHeader/>
+    <br>
     <div class="page-search">
         <div class="columns is-multiline">
             <div class="column is-12">
@@ -18,11 +20,13 @@
 <script>
 import axios from 'axios'
 import ProductBox from '@/components/ProductBox.vue'
+import EcHeader from '@/components/EcHeader.vue'
 
 export default {
     name: 'EcSearch',
     components: {
-        ProductBox
+        ProductBox,
+        EcHeader
     },
     data() {
         return {

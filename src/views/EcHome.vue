@@ -1,4 +1,5 @@
 <template>
+  <EcHeader />
   <div class="home">
     <section class="hero is-medium is-dark mb-6">
         <div class="hero-body has-text-centered">
@@ -22,11 +23,16 @@
         v-bind:product="product" />
     </div>
   </div>
+
+  <footer class="footer">
+    <p class="has-text-centered">Copyright (c) 2023</p>
+  </footer>
 </template>
 
 <script>
+import 'bulma'
 import axios from 'axios'
-
+import EcHeader from '@/components/EcHeader'
 import ProductBox from '@/components/ProductBox'
 
 export default {
@@ -37,7 +43,8 @@ export default {
     }
   },
   components: {
-    ProductBox
+    ProductBox,
+    EcHeader,
   },
   mounted() {
     this.getLatestProducts()
@@ -64,5 +71,5 @@ export default {
 </script>
 
 <style>
-  
+
 </style>

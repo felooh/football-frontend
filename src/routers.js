@@ -7,10 +7,11 @@ import LogOut from "./components/LogOut.vue";
 import UserProfile from "./components/UserProfile.vue";
 import ViewPost from "./components/ViewPost.vue";
 import ProfileUpdate from "./components/ProfileUpdate.vue";
+import EcHeader from './components/EcHeader.vue'
 
 import store from './store'
 
-import EcHome from './components/Home.vue'
+import EcHome from './views/EcHome.vue'
 
 import EcProduct from './views/Product.vue'
 import EcCategory from './views/Category.vue'
@@ -19,7 +20,6 @@ import EcCart from './views/Cart.vue'
 import MyAccount from './views/MyAccount.vue'
 import EcCheckout from './views/Checkout.vue'
 import EcSuccess from './views/Success.vue'
-import EcMainPage from './views/Main.vue'
 
 
 import { createRouter, createWebHistory } from "vue-router";
@@ -111,9 +111,9 @@ const routes = [
         component: EcHome
       },
       {
-        path: '/shop',
-        name: 'EcMainPage',
-        component: EcMainPage
+        path: '/echeader',
+        name: 'EchHeader',
+        component: EcHeader
       },
    
 ];

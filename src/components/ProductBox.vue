@@ -2,7 +2,7 @@
     <div class="column is-3">
         <div class="box">
             <figure class="image mb-4">
-                <img v-bind:src="product.get_thumbnail">
+                <img v-bind:src="product.get_thumbnail" >
             </figure>
 
             <h3 class="is-size-4">{{ product.name }}</h3>
@@ -27,5 +27,9 @@ export default {
     margin-top: -1.25rem;
     margin-left: -1.25rem;
     margin-right: -1.25rem;
+  }
+  figure {
+    width: 300px;
+    height: 300px;
   }
 </style>

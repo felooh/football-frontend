@@ -1,4 +1,5 @@
 <template>
+    <EcHeader/>
     <div class="page-cart">
         <div class="columns is-multiline">
             <div class="column is-12">
@@ -44,11 +45,13 @@
 
 <script>
 import CartItem from '@/components/CartItem.vue'
+import EcHeader from '@/components/EcHeader.vue'
 
 export default {
     name: 'EcCart',
     components: {
-        CartItem
+        CartItem,
+        EcHeader
     },
     data() {
         return {

@@ -2,7 +2,7 @@
     <div id="wrapper">
       <nav class="navbar is-dark">
         <div class="navbar-brand">
-          <router-link to="/" class="navbar-item"><strong>eFootShop</strong></router-link>
+          <router-link to="/echome" class="navbar-item"><strong>eFootShop</strong></router-link>
   
           <a class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbar-menu" @click="showMobileMenu = !showMobileMenu">
             <span aria-hidden="true"></span>
@@ -33,6 +33,7 @@
           </div>
   
           <div class="navbar-end">
+            <router-link to="/" class="navbar-item">BLOG</router-link>
             <router-link to="/summer" class="navbar-item">Summer</router-link>
             <router-link to="/winter" class="navbar-item">Winter</router-link>
   
@@ -56,25 +57,15 @@
       <div class="is-loading-bar has-text-centered" v-bind:class="{'is-loading': $store.state.isLoading }">
         <div class="lds-dual-ring"></div>
       </div>
-  
-      <section class="section">
-        <EcHome />
-      </section>
-  
-      <footer class="footer">
-        <p class="has-text-centered">Copyright (c) 2023</p>
-      </footer>
+    
     </div>
   </template>
   
   <script>
   import axios from 'axios'
-  import EcHome from  '@/components/Home.vue'
   export default {
-    name : "EcMainPage",
-    components:{
-        EcHome,
-    },
+    name : "EcHeader",
+    
     data() {
       return {
         showMobileMenu: false,

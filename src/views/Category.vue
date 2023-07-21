@@ -1,4 +1,5 @@
 <template>
+    <EcHeader />
     <div class="page-category">
         <div class="columns is-multiline">
             <div class="column is-12">
@@ -16,13 +17,14 @@
 <script>
 import axios from 'axios'
 import { toast } from 'bulma-toast'
-
 import ProductBox from '@/components/ProductBox'
+import EcHeader from '@/components/EcHeader.vue'
 
 export default {
     name: 'EcCategory',
     components: {
-        ProductBox
+        ProductBox,
+        EcHeader
     },
     data() {
         return {

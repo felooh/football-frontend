@@ -1,8 +1,10 @@
 <template>
+    <EcHeader />
+    <br><br><br>
     <div class="page-product">
         <div class="columns is-multiline">
             <div class="column is-9">
-                <figure class="image mb-6">
+                <figure class="image mb-6" style="height: 400px; width: 400px;">
                     <img v-bind:src="product.get_image">
                 </figure>
 
@@ -32,6 +34,7 @@
 
 <script>
 import axios from 'axios'
+import EcHeader from '@/components/EcHeader.vue'
 import { toast } from 'bulma-toast'
 
 export default {
@@ -41,6 +44,10 @@ export default {
             product: {},
             quantity: 1
         }
+    },
+    components:{
+
+        EcHeader
     },
     mounted() {
         this.getProduct() 

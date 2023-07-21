@@ -1,4 +1,6 @@
 <template>
+    <EcHeader />
+    <br>
     <div class="page-my-account">
         <div class="columns is-multiline">
             <div class="column is-12">
@@ -25,13 +27,14 @@
 
 <script>
 import axios from 'axios'
-
+import EcHeader from '@/components/EcHeader.vue'
 import OrderSummary from '@/components/OrderSummary.vue'
 
 export default {
     name: 'MyAccount',
     components: {
-        OrderSummary
+        OrderSummary,
+        EcHeader
     },
     data() {
         return {
