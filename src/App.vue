@@ -13,9 +13,3 @@ export default {
  
   }
 </script>
-
-<style>
-  @import "assets/style.css";
-</style>
-
-

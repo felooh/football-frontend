@@ -12,23 +12,23 @@
                   <form>
       
                     <div class="form-floating mb-3">
-                      <input v-model="blogger.name" type="text" class="form-control"  placeholder="myusername" required autofocus>
+                      <input v-model="blogger.name" type="text" class="form-control"  placeholder="myusername" required >
                       <label for="floatingInputUsername">Username</label>
                     </div>
 
                     <div class="form-floating mb-3">
-                      <input v-model="blogger.username" type="email" class="form-control" placeholder="myemail" required autofocus>
+                      <input v-model="blogger.username" type="email" class="form-control" placeholder="myemail" required >
                       <label for="floatingInputUsername">Email</label>
                     </div>
       
       
                     <div class="form-floating mb-3">
-                      <input v-model="blogger.password" type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                      <input v-model="blogger.password" type="password" class="form-control" id="floatingPassword" placeholder="Password" required>
                       <label for="floatingPassword">Password</label>
                     </div>
       
                     <div class="form-floating mb-3">
-                      <input type="password" class="form-control" id="floatingPasswordConfirm" placeholder="Confirm Password">
+                      <input type="password" class="form-control" id="floatingPasswordConfirm" placeholder="Confirm Password" required>
                       <label for="floatingPasswordConfirm">Confirm Password</label>
                     </div>
       

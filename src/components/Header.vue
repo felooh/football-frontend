@@ -32,7 +32,7 @@
                 <li class="nav-item" v-show="login">
                     <router-link to="/echome" class="nav-link"><i class="fa fa-power-off" aria-hidden="true"></i>eShop</router-link>
                 </li>
-                <li class="nav-item" >
+                <li class="nav-item" v-show="login">
                     <router-link to="/profile_update" class="nav-link">
                         <img :src="user.profile_pic" alt="" id="img-nav-bar">
                          Profile

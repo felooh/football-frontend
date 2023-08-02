@@ -5,7 +5,7 @@
                 <div class="col-md-4">
                     <h1 style="font-weight: bolder;">Blogger Details</h1>
                     <div class="text-center">
-                        <img :src="user.profile_pic" alt="User Photo" class="img-fluid rounded-circle">
+                        <img :src="user.profile_pic"    alt="/assets/images/profile_user.jpg" class="img-fluid rounded-circle">
                         <h3>{{ user.first_name }}</h3>
                         <p>Number of Posts: 10</p>
                         <i class="bi bi-trash"></i>

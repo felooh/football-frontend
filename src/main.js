@@ -5,12 +5,7 @@ import vueCountryRegionSelect from 'vue3-country-region-select'
 import store from './store'
 import axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.css'
-// import './assets/style.css';
-
-
-
-
-
+import '/src/assets/style.css';
 
 
 axios.defaults.baseURL="http://localhost:8000/"

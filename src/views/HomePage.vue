@@ -26,8 +26,10 @@
   league part html 
 ------------------------>
 <h1 style="justify-content:center; align-items:center; display:flex;">Leagues</h1>
+
 <main class="center" >
-  <section id="leagues" class="blogs" style="justify-content: center;  align-items:center; ">
+
+  <section id="leagues" class="blogs">
       <article class="blog">
           <div class="blog-details">
               <div class="blog-img">
@@ -384,16 +386,17 @@
       <div class="video_container">
         <div class="row" >
           <h1 style="justify-content:center; align-items:center; display:flex;">Football Videos</h1>
-          <div class="col-lg-4 col-md-6" style="z-index: -1;">
+          <div class="col-lg-4 col-md-6" style="z-index: 0;">
             <div class="video-section">
               <div class="embed-responsive embed-responsive-16by9">
-                <iframe width="1280" height="720" src="https://www.youtube.com/embed/2fhBvH_-tNM" title="Goals Worth Watching Again #3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>              </div>
+                <iframe width="1280" height="720" src="https://www.youtube.com/embed/TdMFdkopIls" title="Benzema Debut Goal 🔥 Al Ittihad vs ES Tunis 2-1 All Goals &amp; Highlights - 2023" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>              </div>
             </div>
           </div>
           <div class="col-lg-4 col-md-6">
             <div class="video-section">
               <div class="embed-responsive embed-responsive-16by9">
-                <iframe width="1280" height="720" src="https://www.youtube.com/embed/s8eyvLkK11g" title="The Art of Dribbling" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>              </div>
+                <iframe width="1280" height="720" src="https://www.youtube.com/embed/s8eyvLkK11g" title="The Art of Dribbling" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>              
+              </div>
             </div>
           </div>
           <div class="col-lg-4 col-md-6">
@@ -470,8 +473,16 @@ export default {
 
     this.fetchUser()
 
+
+
   },
 
+  mounted() {
+
+    document.title = "Football Blog "
+
+  },
+  
   methods:{
         async  fetchUser() {
         try {
@@ -494,3 +505,7 @@ export default {
     }
 }
 </script>
+
+<style>
+    @import "/src/assets/style.css";
+</style>

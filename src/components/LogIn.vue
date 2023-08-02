@@ -18,7 +18,7 @@
                     <hr>
       
                     <div class="form-floating mb-3">
-                      <input v-model="password" type="password" class="form-control"  placeholder="Password">
+                      <input v-model="password" type="password" class="form-control"  placeholder="Password" required>
                       <label for="floatingPassword">Password</label>
                     </div>
                     <br><br><br>
@@ -62,13 +62,11 @@ export default {
 
           try {
           const response = await axios.post("http://localhost:8000/api/token/", user);
-
+          
+          
           const access = response.data.access
           const refresh= response.data.refresh
-
-          console.log(access)
-          console.log(refresh)
-
+                   
           if(response.status===200){
               this.isLoggedIn = true
               localStorage.setItem("access", access)
