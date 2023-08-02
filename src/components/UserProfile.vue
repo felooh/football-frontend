@@ -3,16 +3,18 @@
         <div class="container mt-5">
             <div class="row">
                 <div class="col-md-4">
-                    <h1 style="font-weight: bolder;">Blogger Details</h1>
+                    <h1 style="font-weight: bolder; text-align: center;" >Blogger Details</h1>
                     <div class="text-center">
-                        <img :src="user.profile_pic"    alt="/assets/images/profile_user.jpg" class="img-fluid rounded-circle">
+                        <img :src="user.profile_pic != null ? user.profile_pic : defaultImageSrc" alt="Profile Picture" class="img-fluid rounded-circle" style="width: 600px; height: 200px;">
+                        <br>
+                        <br>
                         <h3>{{ user.first_name }}</h3>
                         <p>Number of Posts: 10</p>
                         <i class="bi bi-trash"></i>
                     </div>
                 </div>
 
-                <div class="col-md-8">
+                <div class="col-md-12">
                     <h1 style="font-weight: bolder;" >Recent Posts</h1>
                     <div class="row">
                         <div v-if="posts.length === 0" class="col-md-12">
@@ -56,6 +58,7 @@ export default {
             posts: [],
             user:{},
             token: localStorage.getItem('access'),
+            defaultImageSrc: require ("@/assets/preview.png")
         }
     },
     components:{

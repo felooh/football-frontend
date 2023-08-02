@@ -9,9 +9,18 @@
     
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <router-link to="/" class="nav-link"><i class="fa fa-home" aria-hidden="true"></i>Home<span
-                        class="sr-only">(current)</span></router-link>
+                <li class="nav-item">
+                    <router-link
+                    to="/"
+                    class="nav-link"
+                    exact
+                    @click="selectedRoute = '/'"
+                  >
+                    <i class="fa fa-home" aria-hidden="true"></i>Home
+                    <span class="sr-only">(current)</span>
+                  </router-link>
+                  <!-- Repeat the same for other list items with respective routes -->
+                  
                 </li>
                 <li class="nav-item" v-show="login">
                     <router-link to="/user_profile" class="nav-link"><i class="fas fa-user"></i>My Posts</router-link>
@@ -34,12 +43,13 @@
                 </li>
                 <li class="nav-item" v-show="login">
                     <router-link to="/profile_update" class="nav-link">
-                        <img :src="user.profile_pic" alt="" id="img-nav-bar">
+                        <img id="img-nav-bar" :src="user.profile_pic != null ? user.profile_pic : defaultImageSrc">
+
+                        <!-- <img :src="user.profile_pic" alt=""> -->
                          Profile
                     </router-link>
                 </li>
 
-                <li class="nav-item">
                     <div class="nav_dropdown" >
                         <button class="btn btn-primary dropdown-toggle" style="margin-left: 60px;">Categories</button>
                         <div class="dropdown-content">
@@ -51,15 +61,14 @@
                         </div>
                     </div>
         
-                </li>
 
-                <li class="nav-item">
+           
                     <form class="form-inline my-2 my-lg-0" >
                         <div class="searchBar">
                             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"> 
                         </div>
                     </form>
-                </li>   
+                 
             </ul>
         </div>
     </nav>
@@ -77,7 +86,10 @@ import axios from "axios";
         return {
             logged: true,
             login: false,
-            user: {}
+            user: {},
+            selectedRoute: "",
+            defaultImageSrc: require ("@/assets/preview.png")
+ 
         }
     },
     mounted() {

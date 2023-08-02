@@ -5,7 +5,7 @@
             <div class="col-md-3 border-right">
                 <div class="d-flex flex-column align-items-center text-center p-3 py-5">
                     <div class="profile-picture-container">
-                        <img class="rounded-circle mt-5" :src="user.profile_pic" alt="../assets/logo.png" >
+                        <img :src="user.profile_pic != null ? user.profile_pic : defaultImageSrc" alt="Profile Picture" class="img-fluid rounded-circle" style="width: 500px; height: 200px;">
                     </div>
                     <br>
                     <span class="font-weight-bold">{{ user.name }}</span><span class="text-black-50">{{ user.email }}</span>
@@ -103,7 +103,9 @@ export default {
   data() {
     return{
      
-       user: {}
+       user: {},
+       defaultImageSrc: require ("@/assets/preview.png")
+
     
     }
   },

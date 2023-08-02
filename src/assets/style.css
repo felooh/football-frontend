@@ -104,6 +104,7 @@ header part css
 }
 
 
+
 .blog-img:hover img{
     transform: scale(1.05);
     transition: transform ease 0.3s;
@@ -943,4 +944,30 @@ label {
     &.is-loading {
       height: 80px;
     }
+  }
+  .navbar-nav .nav-item::after {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: -3px; /* Adjust this value to position the line where you want */
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: black; /* Change this to the color you desire */
+    transition: width 0.3s ease; /* Add transition for smooth shifting effect */
+  }
+
+  /* Style for the selected li element */
+  .navbar-nav .nav-item.active::after {
+    width: 100%;
+  }
+
+  /* Style for the unselected li elements */
+  .navbar-nav .nav-item:not(.active) {
+    background-color: transparent; /* Change this to the background color you desire for the unselected items */
+  }
+
+  /* Add a hover effect for the unselected items (optional) */
+  .navbar-nav .nav-item:not(.active):hover {
+    background-color: #f2f2f2; /* Change this to the hover background color you desire for the unselected items */
   }
