@@ -20,15 +20,20 @@ import EcCart from './views/Cart.vue'
 import MyAccount from './views/MyAccount.vue'
 import EcCheckout from './views/Checkout.vue'
 import EcSuccess from './views/Success.vue'
-
+import IndexPage from './views/IndexPage.vue'
 
 import { createRouter, createWebHistory } from "vue-router";
 
 const routes = [
     {
+      name: "IndexPage",
+      component: IndexPage,
+      path:"/"
+    },
+    {
         name: "HomePage",
         component: HomePage,
-        path:"/"
+        path:"/home"
     },
     {
         name: "SignUp",

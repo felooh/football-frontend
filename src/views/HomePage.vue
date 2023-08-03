@@ -483,27 +483,30 @@ export default {
 
   },
   
-  methods:{
-        async  fetchUser() {
-        try {
-            const authenticationToken = localStorage.getItem('access');
+  methods: {
+    async fetchUser() {
+      const authenticationToken = localStorage.getItem("access");
 
-            const response = await axios.get("http://localhost:8000/api/get-user/", {
-                headers: {"Authorization": `Bearer ${authenticationToken}`}
-            });
-            console.log(response)
-        } catch (error) {
-            if(error.data.response.status === 401){
-                this.$router.push({name:"LogIn"})
-            }
-            // console.log(error.response.data)
+      try {
+        const response = await axios.get("http://localhost:8000/api/get-user/", {
+          headers: { Authorization: `Bearer ${authenticationToken}` },
+        });
+        console.log(response.data);
+
+        // Check if the response status is 401 (Unauthorized)
+        if (response.status === 401) {
+          // Redirect to the login page using Vue Router
+          this.$router.push({ name: "LogIn" });
         }
-       
-      },
- 
+      } catch (error) {
+        console.error(error);
+        // Handle error (e.g., display a message or redirect to login page)
+        this.$router.push({ name: "LogIn" });
+      }
+    },
+  },
 
     }
-}
 </script>
 
 <style>

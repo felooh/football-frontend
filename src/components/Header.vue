@@ -60,7 +60,7 @@
                         <a href="#videos">Videos</a>
                         </div>
                     </div>
-        
+                   
 
            
                     <form class="form-inline my-2 my-lg-0" >
@@ -120,11 +120,6 @@ import axios from "axios";
         console.log(response.data)
 
         this.user = response.data;
-
-        if(response.status===401){
-            
-            this.$router.push({name:"LogIn"})
-        }
        
       },
      }

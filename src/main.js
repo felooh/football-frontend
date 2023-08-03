@@ -6,10 +6,18 @@ import store from './store'
 import axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.css'
 import '/src/assets/style.css';
+import { useDark, useToggle } from "@vueuse/core";
+
 
 
 axios.defaults.baseURL="http://localhost:8000/"
 
 
-createApp(App).use(store).use(router).use(vueCountryRegionSelect).mount('#app');
+createApp(App)
+.use(store)
+.use(router)
+.use(vueCountryRegionSelect)
+.use(useDark)
+.use(useToggle)
+.mount('#app');
 
