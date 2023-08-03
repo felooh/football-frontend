@@ -19,12 +19,9 @@
                   <div class="control">
                     <input type="text" class="input" placeholder="What are you looking for?" name="query">
                   </div>
-  
                   <div class="control">
                     <button class="button is-success">
-                        <span class="icon">
-                        <i class="fas fa-search"></i>
-                        </span>
+                        <i class="bi bi-search"></i>
                     </button>
                   </div>
                 </div>
@@ -33,10 +30,8 @@
           </div>
   
           <div class="navbar-end">
-            <router-link to="/" class="navbar-item">BLOG</router-link>
-            <router-link to="/summer" class="navbar-item">Summer</router-link>
-            <router-link to="/winter" class="navbar-item">Winter</router-link>
-  
+            <router-link to="/" class="navbar-item"><i class="bi bi-box-arrow-left"></i>BLOG</router-link>
+           
             <div class="navbar-item">
               <div class="buttons">
                 <template v-if="$store.state.isAuthenticated">
@@ -45,7 +40,7 @@
   
                
                 <router-link to="/cart" class="button is-success">
-                  <span class="icon"><i class="fas fa-shopping-cart"></i></span>
+                  <span><i class="bi bi-cart4"></i></span>
                   <span>Cart ({{ cartTotalLength }})</span>
                 </router-link>
               </div>

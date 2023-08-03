@@ -23,23 +23,23 @@
                   
                 </li>
                 <li class="nav-item" v-show="login">
-                    <router-link to="/user_profile" class="nav-link"><i class="fas fa-user"></i>My Posts</router-link>
+                    <router-link to="/user_profile" class="nav-link"><i class="bi bi-file-earmark-post"></i>My Posts</router-link>
 
                 </li>
                 <li class="nav-item" v-show="login">
-                    <router-link to="/add_post" class="nav-link"><i class="fa fa-plus-circle"></i>Create Post</router-link>
+                    <router-link to="/add_post" class="nav-link"><i class="bi bi-patch-plus"></i>Create Post</router-link>
                 </li>
                 <li class="nav-item" v-show="logged">
-                    <router-link to="/login" class="nav-link"><i class="fa fa-plus-circle"></i>Login</router-link>
+                    <router-link to="/login" class="nav-link"><i class="bi bi-door-open"></i>Login</router-link>
                 </li>
                 <li class="nav-item" v-show="logged">
-                    <router-link to="/sign_up" class="nav-link"><i class="fa fa-plus-circle"></i>Sign Up</router-link>
+                    <router-link to="/sign_up" class="nav-link"><i class="bi bi-plus-circle"></i>Sign Up</router-link>
                 </li>
                 <li class="nav-item" v-show="login">
-                    <router-link to="/logout" class="nav-link"><i class="fa fa-power-off" aria-hidden="true"></i>Logout</router-link>
+                    <router-link to="/logout" class="nav-link"><i class="bi bi-box-arrow-right"></i>Logout</router-link>
                 </li>
                 <li class="nav-item" v-show="login">
-                    <router-link to="/echome" class="nav-link"><i class="fa fa-power-off" aria-hidden="true"></i>eShop</router-link>
+                    <router-link to="/echome" class="nav-link"><i class="bi bi-cart4"></i>eShop</router-link>
                 </li>
                 <li class="nav-item" v-show="login">
                     <router-link to="/profile_update" class="nav-link">

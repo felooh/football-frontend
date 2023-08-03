@@ -3,14 +3,13 @@
         <div class="container mt-5">
             <div class="row">
                 <div class="col-md-4">
-                    <h1 style="font-weight: bolder; text-align: center;" >Blogger Details</h1>
+                    <h1 style="font-weight: bolder;" >Blogger Details</h1>
                     <div class="text-center">
-                        <img :src="user.profile_pic != null ? user.profile_pic : defaultImageSrc" alt="Profile Picture" class="img-fluid rounded-circle" style="width: 600px; height: 200px;">
+                        <img :src="user.profile_pic != null ? user.profile_pic : defaultImageSrc" alt="Profile Picture" class="img-fluid rounded-circle" style="width: 200px; height: 200px;">
                         <br>
                         <br>
                         <h3>{{ user.first_name }}</h3>
                         <p>Number of Posts: 10</p>
-                        <i class="bi bi-trash"></i>
                     </div>
                 </div>
 
@@ -26,9 +25,9 @@
                         </div>
                         <div v-else class="col-md-6" v-for="post in posts" :key="post.id">
                             <div class="card mb-3">
-                                <img :src="'http://127.0.0.1:8000'+post.image" class="card-img-top" alt="Post Image" style="height: 350px;">
+                                <img :src="'http://127.0.0.1:8000'+post.image" class="card-img-top" alt="Post Image" style="height: 600px;">
                                 <div class="card-body">
-                                    <h5 style="font-weight: bold;" class="card-title">{{ truncateTitle(post.title, 60) }}</h5>
+                                    <h5 style="font-weight: bold;" class="card-title">{{ truncateTitle(post.title, 100) }}</h5>
                                     <div class="d-flex justify-content-between">
                                         <small class="text-muted">Likes: </small>
                                         <small class="text-muted">Comments: </small> 

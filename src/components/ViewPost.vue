@@ -7,17 +7,18 @@
       <div class="post-container">
         <h1 style="font-size: 50px;"  class="post-title">{{ post.title }}</h1>
         <div class="post-details">
-          <p class="blogger-name"><i class="fas fa-user-tie"></i>{{ post.author_name }}</p>
-          <p class="blogger-name"><i class="far fa-clock"></i>1 month ago</p>
-          <p class="blooger-name"><i class="far fa-comments"></i>no comments</p>
-          <p class="blogger-name"><i class="fas fa-tag"></i>No tags</p>
+          <p class="blogger-name"><i class="bi bi-person-fill"></i>{{ post.author_name }}</p>
+          <p class="blogger-name"><i class="bi bi-clock"></i>1 month ago</p>
+          <p class="blogger-name"><i class="bi bi-list-stars"></i>no comments</p>
+          <p class="blogger-name"><i class="bi bi-tags"></i>No tags</p>
           <img :src="post.image" alt="Post Image" width="400">
           <p class="post-content" v-html="post.content"></p>
         </div>
         <div class="likes-comments">
           <p>Likes: <span class="likes-count">100</span></p>
           <p>Comments: <span class="comments-count">50</span></p>
-          <i class="fas fa-trash-can" @click="deletePost(post.id)">    Delete Post</i>
+          
+          <i class="bi bi-trash" @click="deletePost(post.id)" style="color: red;">Delete Post</i>
 
         </div>
       </div>

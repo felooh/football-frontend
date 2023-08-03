@@ -5,10 +5,10 @@
                 <img src="../assets/images/Logo2.png" alt="">
             </div>
             <div class="footer-icon">
-                <a href="#"><i class="fab fa-instagram-square"></i></a>
-                <a href="#"><i class="fab fa-dribbble"></i></a>
-                <a href="#"> <i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#"><i class="bi bi-instagram"></i></a>
+                <a href="#"><i class="bi bi-dribbble"></i></a>
+                <a href="#"> <i class="bi bi-twitter"></i></a>
+                <a href="#"><i class="bi bi-youtube"></i></a>
             </div>
             <div class="copy-right">
                 <p>Copyright &copy; 2023 Football</p>
