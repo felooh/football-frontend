@@ -11,7 +11,7 @@
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
                     <router-link
-                    to="/"
+                    to="/home"
                     class="nav-link"
                     exact
                     @click="selectedRoute = '/'"
@@ -43,10 +43,7 @@
                 </li>
                 <li class="nav-item" v-show="login">
                     <router-link to="/profile_update" class="nav-link">
-                        <img id="img-nav-bar" :src="user.profile_pic != null ? user.profile_pic : defaultImageSrc">
-
-                        <!-- <img :src="user.profile_pic" alt=""> -->
-                         Profile
+                        <img id="img-nav-bar" :src="user.profile_pic != null ? user.profile_pic : defaultImageSrc"> Profile
                     </router-link>
                 </li>
 
@@ -133,4 +130,8 @@ import axios from "axios";
 
 <style>
  @import "../assets/style.css";
+
+ #nav .active-link{
+    color: red;
+ }
 </style>

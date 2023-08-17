@@ -1,14 +1,14 @@
 <template>
-        <HeaderBar/>
+        <HeaderBar />
         <div class="container mt-5">
             <div class="row">
                 <div class="col-md-4">
                     <h1 style="font-weight: bolder;" >Blogger Details</h1>
                     <div class="text-center">
-                        <img :src="user.profile_pic != null ? user.profile_pic : defaultImageSrc" alt="Profile Picture" class="img-fluid rounded-circle" style="width: 200px; height: 200px;">
+                        <img :src="user.profile_pic != null ? user.profile_pic : defaultImageSrc" alt="Profile Picture" class="img-fluid rounded-circle" style="width: 800px; height: 200px;">
                         <br>
                         <br>
-                        <h3>{{ user.first_name }}</h3>
+                        <h3></h3>
                         <p>Number of Posts: 10</p>
                     </div>
                 </div>
@@ -64,18 +64,19 @@ export default {
       HeaderBar,
       FooterBar
     },
-
+  
     mounted(){
 
         this.fetchPost()
         this.fetchUser()
-  },
+        
+    },
+    
+    methods:{
 
-  methods:{
-
-    async fetchPost(){
-        try {
-        const response = await axios.get("http://localhost:8000/api/v1/posts/author/", {
+        async fetchPost(){
+         try {
+            const response = await axios.get("http://localhost:8000/api/v1/posts/author/", {
             headers: {
                 "Authorization": `Bearer ${this.token}`
             }
@@ -84,12 +85,12 @@ export default {
         this.posts = response.data;
 
 
-      } catch (error) {
-        console.error(error);
-      }
-    },
-    async  fetchUser() {
-        try {
+         } catch (error) {
+         console.error(error);
+        }
+        },
+        async  fetchUser() {
+         try {
 
             const response = await axios.get("http://localhost:8000/api/get-user/", {
                 headers: {
@@ -110,13 +111,15 @@ export default {
             console.error(error)
             
         }
-      },
-    truncateTitle(title, limit) {
+         },
+        truncateTitle(title, limit) {
         if (title.length > limit) {
         return title.substring(0, limit) + "...";
         }
         return title;
-      }
+        },
+        
+
       
       
   }
@@ -127,5 +130,5 @@ export default {
 
 
 <style>
- @import "../assets/style.css"
+ @import "../assets/style.css";
 </style>

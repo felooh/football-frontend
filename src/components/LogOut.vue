@@ -18,7 +18,7 @@
                     <button @click.prevent="Logout" class="btn btn-lg btn-primary btn-login fw-bold text-uppercase" type="submit">Yes</button>
                   </div>
                   <div class="d-grid mb-2">
-                    <router-link to="/" class="btn btn-lg btn-danger btn-login fw-bold text-uppercase" type="submit">No</router-link>
+                    <router-link to="/home" class="btn btn-lg btn-danger btn-login fw-bold text-uppercase" type="submit">No</router-link>
                   </div>
                   <br><br><br><br><br><br>
                 </div>

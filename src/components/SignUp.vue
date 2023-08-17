@@ -50,6 +50,8 @@
 </template>
 
 <script>
+import swal from 'sweetalert';
+
  export default{
     name:"SignUp",
     data(){
@@ -58,33 +60,48 @@
           name: "",
           username:"",
           password:""
-        }
+        
+        },
+        errors: {}
       
        }
     },
     methods:{
       
         async SignUp(){
-          try {
-              var response = await fetch('http://localhost:8000/user/' ,{
+          ///////////////////////////
+          try{
+            var response = await fetch('http://localhost:8000/user/' ,{
               method:"post",
               headers:{
                 'Content-Type':'application/json'
               },
               body: JSON.stringify(this.blogger)
                  })
-              if(response.status==201) {
-                  this.$router.push({name:"LogIn"})
 
-                  alert("Sign Up Successful")
-                                  
-                
-
-              }
-            
-          } catch (error) {
-            console.warn(error)
-            
+            if(response.status === 201){
+              swal({
+                icon: 'success',
+                title: 'Success',
+                text: 'Registration Successfully'
+              })
+              
+              this.$router.push({name:"LogIn"})
+              
+            }
+            else{
+              swal({
+                icon: 'error',
+                title: 'Invalid',
+                text: "The details given may belong to another user. Check your details"
+              })
+            }
+          }catch (e) {
+            swal({
+              icon: 'error',
+              title: 'Invalid',
+              text: e
+            })
           }
           
         },
@@ -95,5 +112,5 @@
 </script>
 
 <style>
-  @import "../assets/style.css"
+  @import "../assets/style.css";
 </style>

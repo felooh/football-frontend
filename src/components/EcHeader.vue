@@ -30,7 +30,7 @@
           </div>
   
           <div class="navbar-end">
-            <router-link to="/" class="navbar-item"><i class="bi bi-box-arrow-left"></i>BLOG</router-link>
+            <router-link to="/home" class="navbar-item"><i class="bi bi-box-arrow-left"></i>BLOG</router-link>
            
             <div class="navbar-item">
               <div class="buttons">

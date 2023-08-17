@@ -13,6 +13,23 @@ import { useDark, useToggle } from "@vueuse/core";
 axios.defaults.baseURL="http://localhost:8000/"
 
 
+
+// toast
+import Swal from 'sweetalert'
+Swal({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
+});
+
+
+
 createApp(App)
 .use(store)
 .use(router)

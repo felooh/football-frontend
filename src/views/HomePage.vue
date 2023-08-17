@@ -493,11 +493,11 @@ export default {
         });
         console.log(response.data);
 
-        // Check if the response status is 401 (Unauthorized)
+
         if (response.status === 401) {
-          // Redirect to the login page using Vue Router
           this.$router.push({ name: "LogIn" });
         }
+        
       } catch (error) {
         console.error(error);
         // Handle error (e.g., display a message or redirect to login page)

@@ -110,7 +110,7 @@
                 <template v-if="cartTotalLength">
                     <hr>
 
-                    <button class="button is-dark" @click="submitForm">Pay with Stripe</button>
+                    <button class="btn btn-success" @click="submitForm">Pay with Mpesa</button>
                 </template>
             </div>
         </div>
@@ -127,8 +127,7 @@ export default {
             cart: {
                 items: []
             },
-            stripe: {},
-            card: {},
+
             first_name: '',
             last_name: '',
             email: '',
@@ -142,24 +141,18 @@ export default {
     components:{
         EcHeader
     },
+
     mounted() {
-        document.title = 'Checkout | Djackets'
+        document.title = 'Checkout | eShop'
 
-        this.cart = this.$store.state.cart
-
-        // if (this.cartTotalLength > 0) {
-        //     this.stripe = Stripe('pk_test_51H1HiuKBJV2qfWbD2gQe6aqanfw6Eyul5PO2KeOuSRlUMuaV4TxEtaQyzr9DbLITSZweL7XjK3p74swcGYrE2qEX00Hz7GmhMI')
-        //     const elements = this.stripe.elements();
-        //     this.card = elements.create('card', { hidePostalCode: true })
-
-        //     this.card.mount('#card-element')
-        // }
+        this.cart = this.$store.state.cart;
     },
+
     methods: {
         getItemTotal(item) {
             return item.quantity * item.product.price
         },
-        submitForm() {
+        async submitForm() {
             this.errors = []
 
             if (this.first_name === '') {
@@ -193,72 +186,88 @@ export default {
             if (!this.errors.length) {
                 this.$store.commit('setIsLoading', true)
 
-                this.stripe.createToken(this.card).then(result => {                    
-                    if (result.error) {
-                        this.$store.commit('setIsLoading', false)
+              try {
+                // Make an HTTP request to your Django backend to initiate STK Push
+                const stkPushResponse = await axios.post('/initiate-stk-push/', {
+                // Pass necessary data to the backend for STK Push initiation
+                // Assuming you need the phone number, amount, etc.
+                phone: this.phone,
+                amount: this.cartTotalPrice,
+                // Add any other data required for STK Push initiation
+                });
 
-                        this.errors.push('Something went wrong with Stripe. Please try again')
-
-                        console.log(result.error.message)
-                    } else {
-                        this.stripeTokenHandler(result.token)
-                    }
-                })
-            }
-        },
-        async stripeTokenHandler(token) {
-            const items = []
-
-            for (let i = 0; i < this.cart.items.length; i++) {
-                const item = this.cart.items[i]
-                const obj = {
-                    product: item.product.id,
-                    quantity: item.quantity,
-                    price: item.product.price * item.quantity
+                // Handle the response from the backend
+                if (stkPushResponse.data.CheckoutRequestID) {
+                // The STK Push initiation was successful
+                // Use the response data to display a confirmation message, etc.
+                } else {
+                // STK Push initiation failed
+                this.errors.push('STK Push initiation failed. Please try again later.');
                 }
-
-                items.push(obj)
-            }
-
-            const data = {
-                'first_name': this.first_name,
-                'last_name': this.last_name,
-                'email': this.email,
-                'address': this.address,
-                'zipcode': this.zipcode,
-                'place': this.place,
-                'phone': this.phone,
-                'items': items,
-                'stripe_token': token.id
-            }
-
-            await axios
-                .post('/api/v2/checkout/', data)
-                .then(response => {
-                    this.$store.commit('clearCart')
-                    this.$router.push('/cart/success')
-                    console.log(response.data)
-                })
-                .catch(error => {
-                    this.errors.push('Something went wrong. Please try again')
-
-                    console.log(error)
-                })
-
                 this.$store.commit('setIsLoading', false)
-        }
-    },
-    computed: {
-        cartTotalPrice() {
-            return this.cart.items.reduce((acc, curVal) => {
-                return acc += curVal.product.price * curVal.quantity
-            }, 0)
+
+                } catch (error) {
+                // Handle any errors from the backend or network errors
+                this.errors.push('Error initiating STK Push. Please try again later.');
+                console.error(error);
+              }
+            }
         },
-        cartTotalLength() {
-            return this.cart.items.reduce((acc, curVal) => {
-                return acc += curVal.quantity
-            }, 0)
-        }
+        // async checkStkStatus() {
+        //     // ... your existing methods to check STK status
+
+        //     // Make an HTTP request to your Django backend to query STK status
+        //     try {
+        //         const queryStkResponse = await axios.post('/query-stk-status/', {
+        //         // Pass necessary data to the backend for STK status query
+        //         // For example, checkout request ID or any other relevant data
+        //         checkoutRequestID: 'ws_CO_03072023054410314768168060',
+        //         // Add any other data required for STK status query
+        //         });
+
+        //         // Handle the response from the backend
+        //         if (queryStkResponse.data.message) {
+        //         // Use the message in the response to display the STK status to the user
+        //         console.log(queryStkResponse.data.message);
+        //         } else {
+        //         // Response from the backend is not as expected
+        //         console.log('Error in querying STK status.');
+        //         }
+
+        //         await axios
+        //         .post('/api/v2/checkout/', data)
+        //         .then(response => {
+        //             this.$store.commit('clearCart')
+        //             this.$router.push('/cart/success')
+        //             console.log(response.data)
+        //         })
+        //         .catch(error => {
+        //             this.errors.push('Something went wrong. Please try again')
+
+        //             console.log(error)
+        //         })
+
+        //         this.$store.commit('setIsLoading', false)
+         
+        //     } catch (error) {
+        //         // Handle any errors from the backend or network errors
+        //         console.error('Error querying STK status.', error);
+        //     }
+        //     },
+    //     },
+        
+    //     computed: {
+    //     cartTotalPrice() {
+    //         return this.cart.items.reduce((acc, curVal) => {
+    //             return acc += curVal.product.price * curVal.quantity
+    //         }, 0)
+    //     },
+    //     cartTotalLength() {
+    //         return this.cart.items.reduce((acc, curVal) => {
+    //             return acc += curVal.quantity
+    //         }, 0)
+    //     }
+       }
     }
-}
+
 </script>

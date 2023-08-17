@@ -1,4 +1,4 @@
-<template>
+  <template>
     <body style="background-image: linear-gradient(to right, #3A1078,#3795BD);"> 
         <div class="reg_container">
           <div class="row">
@@ -38,10 +38,14 @@
           </div>
         </div>
     </body>
+
 </template>
+
 
 <script>
 import axios from "axios";
+import swal from 'sweetalert';
+
 export default {
     name:"LogIn",
     data(){
@@ -60,26 +64,43 @@ export default {
           password: this.password
           };
 
-          try {
-          const response = await axios.post("http://localhost:8000/api/token/", user);
-          
-          
-          const access = response.data.access
-          const refresh= response.data.refresh
-                   
-          if(response.status===200){
+    
+          /////////////////
+
+          try{
+            const response = await axios.post("http://localhost:8000/api/token/", user);
+
+            if(response.status === 200){
+              
+              const access = response.data.access
+              const refresh= response.data.refresh
+              swal({
+                icon: 'success',
+                title: 'Success',
+                text: 'Logged in Successfully created'
+              })
               this.isLoggedIn = true
               localStorage.setItem("access", access)
               localStorage.setItem("refresh", refresh)
               this.$router.push({name:"HomePage"})
+              
+            }else{
+              this.errors = response.data
+              swal({
+                icon: 'error',
+                title: 'Invalid',
+                text: 'An error occurred. Please try again.'
+              })
+            }
+          }catch (e) {
+            swal({
+              icon: 'error',
+              title: 'Invalid',
+              text: e
+            })
           }
 
-
-          } catch (error) {
-
-          console.error('Login failed:', error);
-          alert("Invalid Login Credentials")
-          }
+          /////////////////////
             
         }
     }
