@@ -30,6 +30,8 @@
 </template>
 
 <script>
+import swal from 'sweetalert';
+
 export default {
     name:"LogOut",
     data(){
@@ -51,11 +53,13 @@ export default {
         Logout(){
 
           const response = localStorage.clear()
-
-          console.log(response)
-
+           console.log(response)
+          swal({
+            icon: 'success',
+            title: 'Success',
+            text: 'Logged out Successfully'
+          })
           this.isLoggedIn = false;
-
           this.$router.push({name:"LogIn"})
 
         }

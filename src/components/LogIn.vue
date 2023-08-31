@@ -12,7 +12,7 @@
                   <form>
                     <br><br><br>
                     <div class="form-floating mb-3">
-                      <input v-model="username" type="email" class="form-control"  placeholder="myEmail" required autofocus>
+                      <input v-model="username" type="email" class="form-control"  placeholder="myEmail" required>
                       <label for="floatingInputEmail">Email</label>
                     </div>
                     <hr>
