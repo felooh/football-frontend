@@ -42,21 +42,26 @@
                 <div class="header-button">
                     <a class="btn btn-primary" href="#">Update your Profile to post!</a>
                     <span><i class="fas fa-arrow-right"></i></span>
-                    
                 </div>
-      
-                
             </div>
             <div class="header-img">
                 <img src="../assets/images/banner.png" alt="">
             </div>
-            
         </div>
-        
-    </header>
+       </header>
      <!-- ---------------
     league part html 
   ------------------------>
+  <header class="wrapper-2">
+    <div class="container">
+        <div class="header-text">
+            <div>
+            </div>
+        </div>
+        <div class="header-img">
+        </div>
+    </div>
+   </header>
 
   <!-- ---------------
     league part ends here html 

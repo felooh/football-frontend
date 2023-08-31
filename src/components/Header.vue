@@ -16,7 +16,7 @@
                     exact
                     @click="selectedRoute = '/'"
                   >
-                    <i class="fa fa-home" aria-hidden="true"></i>Home
+                  <i class="bi bi-house-fill"></i>Home
                     <span class="sr-only">(current)</span>
                   </router-link>
                   <!-- Repeat the same for other list items with respective routes -->

@@ -10,6 +10,8 @@
                     <br>
                     <span class="font-weight-bold">{{ user.name }}</span><span class="text-black-50">{{ user.email }}</span>
                     <span> </span>
+                    <h4>{{user.first_name }} {{user.last_name}}</h4>
+                    <h6><i class="bi bi-people-fill"></i>10 Followers | 6 Following</h6>
                 </div>
             </div>
             <div class="col-md-9 border-right">
@@ -90,6 +92,7 @@
 import axios from "axios"
 import HeaderBar from "./Header.vue";
 import FooterBar from "./Footer.vue";
+import swal from 'sweetalert';
 
 
 
@@ -163,8 +166,20 @@ export default {
         })
 
         if(response.status===200){
-            alert("Update Successful")
             this.$router.push({name:"UserProfile"})
+            swal({
+                icon: 'success',
+                title: 'Success',
+                text: 'Profile Updated successfully'
+              })
+        }
+        else{
+            this.errors = response.data
+              swal({
+                icon: 'error',
+                title: 'Invalid',
+                text: 'An error occurred. Please try again.'
+              })
         }
      },
          

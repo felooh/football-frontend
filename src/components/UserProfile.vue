@@ -5,11 +5,12 @@
                 <div class="col-md-4">
                     <h1 style="font-weight: bolder;" >Blogger Details</h1>
                     <div class="text-center">
-                        <img :src="user.profile_pic != null ? user.profile_pic : defaultImageSrc" alt="Profile Picture" class="img-fluid rounded-circle" style="width: 800px; height: 200px;">
+                        <img :src="user.profile_pic != null ? user.profile_pic : defaultImageSrc" alt="Profile Picture" class="img-fluid rounded-circle" style="width: 200px; height: 200px;">
                         <br>
                         <br>
-                        <h3></h3>
-                        <p>Number of Posts: 10</p>
+                        <h3>{{user.first_name }} {{user.last_name}}</h3>
+                        <h5><i class="bi bi-people-fill"></i>10 Followers | 6 Following</h5>
+                        <p><i class="bi bi-postcard"></i>Number of Posts: {{posts.length}}</p>
                     </div>
                 </div>
 

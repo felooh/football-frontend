@@ -57,7 +57,7 @@ import HeaderBar from "./Header.vue";
 import FooterBar from "./Footer.vue";
 import { QuillEditor } from '@vueup/vue-quill';
 import '@vueup/vue-quill/dist/vue-quill.snow.css';
-
+import swal from 'sweetalert';
 
 export default{
     name:"AddPost",
@@ -112,11 +112,19 @@ methods:{
           });
 
           if (response.status === 201) {
-            console.warn(response.data);
-            alert("Post Successful");
+            swal({
+              icon: 'success',
+              title: 'Success',
+              text: 'Post added successfully'
+            })
             this.$router.push({ name: "UserProfile" });
           }
         } catch (error) {
+          swal({
+            icon: 'error',
+            title: 'Invalid',
+            text: 'Error occured...post has not been created'
+          })
           console.error(error);
         }
       },

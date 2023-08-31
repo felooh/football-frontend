@@ -24,8 +24,14 @@ header part css
     display: block;
     background-image: linear-gradient(to right,#3795BD, #3A1078);
     background-color: #2D25A0;
-    margin: 0 auto;
+    border-radius: 140px;
     margin-bottom: 70px;
+}
+.wrapper-2{
+    display: block;
+    background-color: #2D25A0;
+    border-radius: 200px;
+    margin: 20px;
 }
 .container{
     display: flex;
